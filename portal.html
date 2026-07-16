@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portal de Entrada MGR | MGR START</title>
+<meta name="description" content="Comece gratuitamente pelo MGR START e organize sua realidade financeira antes de tomar decisões importantes.">
+<style>
+:root{
+  --navy:#0b2744;
+  --navy2:#12395f;
+  --gold:#c8a64f;
+  --gold2:#e7d7a4;
+  --bg:#f5f8fb;
+  --white:#fff;
+  --text:#203245;
+  --muted:#6d7d8c;
+  --line:#dfe6ee;
+  --green:#1f7a5b;
+  --dark:#071522;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{text-decoration:none}
+.container{width:min(1160px,92%);margin:auto}
+.header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);border-bottom:1px solid rgba(11,39,68,.08);backdrop-filter:blur(12px)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-size:25px;font-weight:800;color:var(--navy)}
+.logo span{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:11px;padding:14px 20px;font-weight:750;cursor:pointer;transition:.25s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-light{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--dark));color:#fff;padding:92px 0 82px}
+.hero::after{content:"";position:absolute;width:480px;height:480px;border-radius:50%;border:1px solid rgba(255,255,255,.08);right:-140px;bottom:-200px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative;z-index:2}
+.eyebrow{color:var(--gold2);font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+h1{font-size:58px;line-height:1.04;margin:17px 0 22px}
+.hero p{font-size:19px;line-height:1.7;opacity:.9}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.mockup{background:#fff;color:var(--text);border-radius:24px;padding:22px;box-shadow:0 30px 70px rgba(0,0,0,.32)}
+.mock-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.mock-top strong{color:var(--navy)}
+.mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.mock-card{background:#f6f8fb;border-radius:14px;padding:16px}
+.mock-card small{color:var(--muted)}
+.mock-card b{display:block;font-size:21px;color:var(--navy);margin-top:5px}
+.mock-chart{height:135px;margin-top:12px;background:#f7f9fc;border-radius:14px;padding:14px;display:flex;gap:9px;align-items:end}
+.bar{flex:1;background:var(--navy);border-radius:7px 7px 0 0}
+.bar.gold{background:var(--gold)}
+.section{padding:82px 0}
+.section-head{max-width:780px;margin:0 auto 40px;text-align:center}
+.section-head h2{font-size:42px;line-height:1.15;margin:0 0 14px;color:var(--navy)}
+.section-head p{font-size:18px;line-height:1.7;color:var(--muted)}
+.problem{background:#fff}
+.problem-box{max-width:900px;margin:auto;text-align:center}
+.problem-box h2{font-size:40px;color:var(--navy)}
+.problem-box p{font-size:19px;line-height:1.8;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#fff;border:1px solid #edf1f5;border-radius:18px;padding:24px;box-shadow:0 10px 28px rgba(16,47,82,.07)}
+.card h3{color:var(--navy)}
+.card p{color:var(--muted);line-height:1.65}
+.journey{background:var(--navy);color:#fff}
+.journey .section-head h2,.journey .section-head p{color:#fff}
+.journey .section-head p{opacity:.8}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.step{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center}
+.step strong{display:block;color:var(--gold2);font-size:20px;margin-bottom:7px}
+.lead{background:linear-gradient(180deg,#eef3f8,#fff)}
+.lead-grid{display:grid;grid-template-columns:1fr .9fr;gap:35px;align-items:center}
+.form-card{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:0 16px 40px rgba(16,47,82,.1)}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 6px}
+input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.checkline{display:flex;gap:9px;align-items:flex-start;margin-top:14px;font-size:12px;color:var(--muted)}
+.checkline input{width:auto;margin-top:2px}
+.success{display:none;background:#e9f6f0;color:var(--green);padding:16px;border-radius:12px;margin-top:14px}
+.success .btn{margin-top:12px}
+.next{background:var(--dark);color:#fff;text-align:center;padding:82px 0}
+.next h2{font-size:42px;margin:0 0 14px}
+.next p{font-size:18px;opacity:.8}
+footer{background:#05111d;color:#fff;padding:30px 0;text-align:center}
+footer small{opacity:.7}
+.reveal{opacity:0;transform:translateY(18px);transition:.65s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:950px){
+  .hero-grid,.lead-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  h1{font-size:46px}
+}
+@media(max-width:650px){
+  h1{font-size:37px}
+  .section-head h2,.problem-box h2,.next h2{font-size:33px}
+  .cards,.steps{grid-template-columns:1fr}
+  .hero{padding-top:70px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <div class="logo">MGR <span>START</span></div>
+    <a href="index.html" class="btn btn-light">Voltar para a Home</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Portal de Entrada MGR</div>
+      <h1>O patrimônio que você terá amanhã depende das decisões que começa a organizar hoje.</h1>
+      <p>O MGR START é a porta de entrada do Método MGR. Organize sua realidade financeira gratuitamente antes de tomar decisões importantes.</p>
+      <div class="hero-actions">
+        <a href="#cadastro" class="btn btn-gold">Quero meu acesso gratuito</a>
+        <a href="index.html#metodo" class="btn btn-light">Conhecer o Método MGR</a>
+      </div>
+    </div>
+
+    <div class="mockup">
+      <div class="mock-top"><strong>MGR START</strong><span>Dashboard</span></div>
+      <div class="mock-grid">
+        <div class="mock-card"><small>Receitas</small><b>R$ 12.500</b></div>
+        <div class="mock-card"><small>Despesas</small><b>R$ 8.200</b></div>
+        <div class="mock-card"><small>Saldo</small><b>R$ 4.300</b></div>
+        <div class="mock-card"><small>Economia</small><b>34,4%</b></div>
+      </div>
+      <div class="mock-chart">
+        <div class="bar" style="height:82%"></div>
+        <div class="bar gold" style="height:58%"></div>
+        <div class="bar" style="height:70%"></div>
+        <div class="bar gold" style="height:46%"></div>
+        <div class="bar" style="height:92%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section problem reveal">
+  <div class="container problem-box">
+    <h2>Antes de crescer, existe uma pergunta.</h2>
+    <p>Você conhece exatamente sua realidade financeira? Sem essa resposta, qualquer decisão importante acontece no escuro. É por isso que o Método MGR começa pela organização.</p>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="container">
+    <div class="section-head">
+      <h2>O que você encontrará</h2>
+      <p>Uma ferramenta simples para transformar informações soltas em uma visão clara da sua vida financeira.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Organização Financeira</h3><p>Receitas, despesas, fluxo financeiro e orçamento mensal.</p></div>
+      <div class="card"><h3>Indicadores</h3><p>Visualize sua evolução e entenda para onde o dinheiro está indo.</p></div>
+      <div class="card"><h3>Clareza</h3><p>Compreenda sua realidade antes de proteger e construir patrimônio.</p></div>
+      <div class="card"><h3>Preparação</h3><p>Chegue ao Diagnóstico Estratégico com informações organizadas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section journey reveal">
+  <div class="container">
+    <div class="section-head">
+      <h2>Sua jornada começa aqui</h2>
+      <p>Cada etapa conduz naturalmente à próxima.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><strong>1</strong>Cadastro</div>
+      <div class="step"><strong>2</strong>Acesso ao MGR START</div>
+      <div class="step"><strong>3</strong>Organização Financeira</div>
+      <div class="step"><strong>4</strong>Diagnóstico Estratégico</div>
+      <div class="step"><strong>5</strong>Plano de Ação</div>
+    </div>
+  </div>
+</section>
+
+<section id="cadastro" class="section lead reveal">
+  <div class="container lead-grid">
+    <div>
+      <div class="eyebrow" style="color:var(--gold)">Acesso gratuito</div>
+      <h2 style="font-size:42px;color:var(--navy);margin-bottom:14px">Comece agora.</h2>
+      <p style="font-size:18px;line-height:1.75;color:var(--muted)">Preencha seus dados e receba acesso ao MGR START. Esta é a primeira etapa da sua jornada pelo Método MGR.</p>
+    </div>
+
+    <div class="form-card">
+      <h3 style="margin-top:0;color:var(--navy)">Receber meu acesso</h3>
+      <form id="leadForm">
+        <label for="nome">Nome</label>
+        <input id="nome" required placeholder="Seu nome">
+
+        <label for="whatsapp">WhatsApp</label>
+        <input id="whatsapp" required placeholder="(00) 00000-0000">
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" required placeholder="voce@email.com">
+
+        <label class="checkline">
+          <input id="consentimento" type="checkbox" required>
+          <span>Concordo em receber o acesso e conteúdos relacionados ao Método MGR.</span>
+        </label>
+
+        <button class="btn btn-dark" type="submit" style="width:100%;margin-top:16px">Receber meu acesso gratuito</button>
+      </form>
+
+      <div id="success" class="success">
+        <strong>Seja bem-vindo ao Método MGR.</strong><br>
+        Seu acesso foi liberado.
+        <br>
+        <a href="app.html" class="btn btn-gold">Abrir MGR START</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="next reveal">
+  <div class="container">
+    <h2>Você já conhece seus números?</h2>
+    <p>O próximo passo é descobrir quais decisões podem fortalecer seu patrimônio.</p>
+    <a href="agendar.html" class="btn btn-gold">Solicitar Diagnóstico Estratégico</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <strong>MGR Planejamento</strong><br>
+    <small>Inteligência para decisões financeiras • Organizar • Proteger • Construir • Perpetuar</small>
+  </div>
+</footer>
+
+<script>
+const form=document.getElementById("leadForm");
+const success=document.getElementById("success");
+
+form.addEventListener("submit",function(event){
+  event.preventDefault();
+
+  const lead={
+    id:Date.now(),
+    nome:document.getElementById("nome").value.trim(),
+    whatsapp:document.getElementById("whatsapp").value.trim(),
+    email:document.getElementById("email").value.trim(),
+    consentimento:document.getElementById("consentimento").checked,
+    origem:"Portal de Entrada MGR",
+    data:new Date().toISOString()
+  };
+
+  let leads=[];
+  try{leads=JSON.parse(localStorage.getItem("mgr_leads")||"[]")}catch(e){leads=[]}
+  leads.push(lead);
+  localStorage.setItem("mgr_leads",JSON.stringify(leads));
+
+  form.reset();
+  success.style.display="block";
+  success.scrollIntoView({behavior:"smooth",block:"center"});
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting)entry.target.classList.add("visible");
+  });
+},{threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
