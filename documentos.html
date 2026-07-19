@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>MGR ONE - Documentos</title>
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f9}
+header{background:#0f2d52;color:#fff;padding:20px}
+.c{max-width:1200px;margin:auto;padding:20px}
+.card{background:#fff;padding:18px;border-radius:10px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+input,select,textarea{width:100%;padding:10px;box-sizing:border-box}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd}
+button{padding:10px 16px;background:#0f2d52;color:#fff;border:none;border-radius:6px;margin-right:8px}
+</style></head><body>
+<header><h1>MGR ONE - Central de Documentos</h1><p>Fase 3.5</p></header>
+<div class='c'>
+<div class='card'><div class='grid'>
+<div><label>Cliente</label><input></div>
+<div><label>Consultor</label><input></div>
+<div><label>Data</label><input type='date'></div>
+<div><label>Categoria</label><select><option>Diagnóstico</option><option>Plano de Ação</option><option>Relatório</option><option>Contrato</option><option>Outros</option></select></div>
+</div></div>
+
+<div class='card'>
+<h2>Biblioteca de Documentos</h2>
+<table>
+<tr><th>Documento</th><th>Categoria</th><th>Data</th><th>Status</th></tr>
+<tr><td>Diagnóstico MGR</td><td>Diagnóstico</td><td>--/--/----</td><td>Disponível</td></tr>
+<tr><td>Plano de Ação</td><td>Plano</td><td>--/--/----</td><td>Disponível</td></tr>
+<tr><td>Relatório Executivo</td><td>Relatório</td><td>--/--/----</td><td>Pendente</td></tr>
+<tr><td>Contrato</td><td>Contrato</td><td>--/--/----</td><td>Não enviado</td></tr>
+</table>
+</div>
+
+<div class='card'>
+<h2>Novo Documento</h2>
+<div class='grid'>
+<div><label>Título</label><input></div>
+<div><label>Categoria</label><select><option>Diagnóstico</option><option>Plano</option><option>Relatório</option><option>Contrato</option></select></div>
+</div>
+<label>Observações</label>
+<textarea rows='5'></textarea>
+</div>
+
+<div class='card'>
+<button>Salvar</button>
+<button>Exportar</button>
+<button>Imprimir PDF</button>
+<button onclick='history.back()'>Voltar ao Dashboard</button>
+</div>
+
+</div></body></html>
