@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MGR ONE - Evolução</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;color:#222}
+header{background:#0f2d52;color:#fff;padding:22px}
+.container{max-width:1200px;margin:auto;padding:20px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}
+.progress{height:18px;background:#e5e7eb;border-radius:9px;overflow:hidden}
+.bar{height:100%;width:68%;background:#0f2d52}
+textarea,input{width:100%;padding:10px;box-sizing:border-box}
+button{padding:10px 16px;border:none;border-radius:6px;background:#0f2d52;color:#fff;margin-right:8px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+<h1>MGR ONE - Evolução</h1>
+<p>Fase 3.4</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<div class="grid">
+<div><strong>Cliente</strong><br><input></div>
+<div><strong>Índice MGR Atual</strong><br><input value="68"></div>
+<div><strong>Consultor</strong><br><input></div>
+<div><strong>Última Atualização</strong><br><input type="date"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Evolução Geral</h2>
+<div class="progress"><div class="bar"></div></div>
+<p><strong>68%</strong> de maturidade financeira estratégica.</p>
+</div>
+
+<div class="card">
+<h2>Histórico de Diagnósticos</h2>
+<table>
+<tr><th>Data</th><th>Índice MGR</th><th>Variação</th></tr>
+<tr><td><input type="date"></td><td><input value="52"></td><td>Inicial</td></tr>
+<tr><td><input type="date"></td><td><input value="61"></td><td>+9</td></tr>
+<tr><td><input type="date"></td><td><input value="68"></td><td>+7</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Evolução por Pilar</h2>
+<table>
+<tr><th>Pilar</th><th>Status</th><th>Meta</th></tr>
+<tr><td>Organizar</td><td>72%</td><td>90%</td></tr>
+<tr><td>Proteger</td><td>81%</td><td>90%</td></tr>
+<tr><td>Construir</td><td>63%</td><td>85%</td></tr>
+<tr><td>Perpetuar</td><td>55%</td><td>80%</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>Comentários da Evolução</h2>
+<textarea rows="6" placeholder="Registrar avanços, desafios e próximos passos..."></textarea>
+</div>
+
+<div class="card">
+<button>Salvar Evolução</button>
+<button>Imprimir PDF</button>
+<button>Exportar</button>
+<button onclick="history.back()">Voltar ao Dashboard</button>
+</div>
+
+</div>
+</body>
+</html>
