@@ -361,9 +361,9 @@ async function enviarLeadServidor(lead){
 
     const json=await resp.json();
 
-    if(!resp.ok || !json.sucesso){
-     throw new Error(JSON.stringify(json));
-    }
+ if(!resp.ok || json.success === false){
+    throw new Error(json.message || "Falha ao cadastrar.");
+}
 
     localStorage.removeItem("mgr_lead_pendente");
     return true;
