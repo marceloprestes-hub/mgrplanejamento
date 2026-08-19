@@ -506,19 +506,73 @@ async function validarCodigoEmail(){
  const codigo=campo.value.replace(/\D/g,'');
  const msg=document.getElementById('msgValidacao');
  const btn=document.getElementById('btnValidarEmail');
- if(!lead||!lead.email){msg.textContent='Cadastro não encontrado. Recomece o processo.';return;}
- if(codigo.length!==6){msg.textContent='Digite o código de 6 dígitos.';return;}
- btn.disabled=true; btn.textContent='VALIDANDO...'; msg.textContent='';
+
+ if(!lead||!lead.email){
+  msg.textContent='Cadastro não encontrado. Recomece o processo.';
+  return;
+ }
+
+ if(codigo.length!==6){
+  msg.textContent='Digite o código de 6 dígitos.';
+  return;
+ }
+
+ btn.disabled=true;
+ btn.textContent='VALIDANDO...';
+ msg.textContent='';
+
  try{
-  const resp=await fetch("https://mgr-api.marceloprestes-economista.workers.dev/leads/validar-email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:lead.email,codigo})});
+  const resp=await fetch(
+   "https://mgr-api.marceloprestes-economista.workers.dev/leads/validar-email",
+   {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+     email:lead.email,
+     codigo
+    })
+   }
+  );
+
   const json=await resp.json();
-  if(!resp.ok||json.success===false||json.validado===false) throw new Error(json.message||json.error||'Código inválido.');
-  localStorage.setItem('mgr_lead_validado',JSON.stringify({...lead,validado_em:new Date().toISOString(),lead_id:json.id||null,lead_uuid:json.uuid||null}));
+
+  if(!resp.ok||json.success===false||json.validado===false){
+   throw new Error(json.message||json.error||'Código inválido.');
+  }
+
+  localStorage.setItem(
+   'mgr_lead_validado',
+   JSON.stringify({
+    ...lead,
+    validado_em:new Date().toISOString(),
+    lead_id:json.id||null,
+    lead_uuid:json.uuid||null
+   })
+  );
+
+  if(json.start_token){
+   localStorage.setItem('mgr_start_token',json.start_token);
+  }
+
+  if(json.start_token_expira_em){
+   localStorage.setItem(
+    'mgr_start_token_expira_em',
+    json.start_token_expira_em
+   );
+  }
+
   document.getElementById('modalValidacao').style.display='none';
   overlay.style.display='none';
+
   liberarMgrStart(lead);
- }catch(e){console.error(e);msg.textContent=e.message||'Não foi possível validar o código.';}
- finally{btn.disabled=false;btn.textContent='VALIDAR E LIBERAR ACESSO';}
+
+ }catch(e){
+  console.error(e);
+  msg.textContent=e.message||'Não foi possível validar o código.';
+ }finally{
+  btn.disabled=false;
+  btn.textContent='VALIDAR E LIBERAR ACESSO';
+ }
 }
 
 document.getElementById('codigoEmail').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,6);});
