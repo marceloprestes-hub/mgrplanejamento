@@ -522,9 +522,9 @@ async function validarCodigoEmail(){
  msg.textContent='';
 
  try{
-  const resp=await fetch(
-   "https://mgr-api.marceloprestes-economista.workers.dev/leads/validar-email",
-   {
+ const resp=await fetch(
+ "https://api.mgrplanejamento.com.br/leads/validar-email",
+ {
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify({
