@@ -522,9 +522,10 @@ async function validarCodigoEmail(){
  msg.textContent='';
 
  try{
- const resp=await fetch(
- "https://api.mgrplanejamento.com.br/leads/validar-email",
- {
+
+  const resp=await fetch(
+   "https://api.mgrplanejamento.com.br/leads/validar-email",
+   {
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify({
@@ -536,8 +537,18 @@ async function validarCodigoEmail(){
 
   const json=await resp.json();
 
-  if(!resp.ok||json.success===false||json.validado===false){
+  if(!resp.ok||json.success===false){
    throw new Error(json.message||json.error||'Código inválido.');
+  }
+
+  /*
+   * O Worker utiliza ok(), portanto os dados retornados
+   * ficam dentro de json.data.
+   */
+  const dados=json.data||json;
+
+  if(dados.validado===false){
+   throw new Error(json.message||dados.message||'Código inválido.');
   }
 
   localStorage.setItem(
@@ -545,22 +556,67 @@ async function validarCodigoEmail(){
    JSON.stringify({
     ...lead,
     validado_em:new Date().toISOString(),
-    lead_id:json.id||null,
-    lead_uuid:json.uuid||null
+    lead_id:dados.id||null,
+    lead_uuid:dados.uuid||null
    })
   );
 
-  if(json.start_token){
-   localStorage.setItem('mgr_start_token',json.start_token);
-  }
-
-  if(json.start_token_expira_em){
-   localStorage.setItem(
-    'mgr_start_token_expira_em',
-    json.start_token_expira_em
+  /*
+   * Guarda a credencial da sessão MGR START.
+   */
+  if(!dados.start_token){
+   throw new Error(
+    'A validação foi concluída, mas a sessão do MGR START não foi criada.'
    );
   }
 
+  localStorage.setItem(
+   'mgr_start_token',
+   dados.start_token
+  );
+
+  if(dados.start_token_expira_em){
+   localStorage.setItem(
+    'mgr_start_token_expira_em',
+    dados.start_token_expira_em
+   );
+  }
+
+  /*
+   * Confirma a sessão diretamente no MGR API.
+   */
+  const sessaoResp=await fetch(
+   "https://api.mgrplanejamento.com.br/start/sessao",
+   {
+    method:"GET",
+    headers:{
+     "Authorization":"Bearer "+dados.start_token
+    }
+   }
+  );
+
+  const sessaoJson=await sessaoResp.json();
+
+  if(!sessaoResp.ok||sessaoJson.success===false){
+   throw new Error(
+    sessaoJson.message||
+    sessaoJson.error||
+    'Não foi possível confirmar a sessão do MGR START.'
+   );
+  }
+
+  const sessaoDados=sessaoJson.data||sessaoJson;
+
+  if(sessaoDados.autenticado!==true){
+   throw new Error(
+    'A sessão do MGR START não foi autenticada.'
+   );
+  }
+
+  /*
+   * Somente depois da sessão confirmada
+   * liberamos o START.
+   */
   document.getElementById('modalValidacao').style.display='none';
   overlay.style.display='none';
 
